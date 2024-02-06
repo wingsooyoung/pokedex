@@ -13,9 +13,13 @@ window.onload = async function() {
         pokemon.classList.add("poke-name");
         pokemon.addEventListener("click", updatePokemon);
         document.getElementById("poke-list").append(pokemon);
-        
+
+        // set bulbasaur(1) as init
+        if (i === 1) {
+        document.getElementById("poke-description").innerText = pokedex[1]["desc"];
     }
 
+}
     
     console.log(pokedex);
 }
