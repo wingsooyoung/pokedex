@@ -40,4 +40,20 @@ async function getPokemon(num) {
 
 function updatePokemon() {
     document.getElementById("poke-img").src = pokedex[this.id]["img"];
+
+    // clear previous type
+    let typesDiv = document.getElementById("poke-types");
+    while (typesDiv.firstChild) {
+        typesDiv.firstChild.remove();
+    }
+
+    // update types
+    let types = pokedex[this.id]["types"];
+    for (let i=0; i < types.length; i++) {
+        let type = document.createElement("span");
+        type.innerText = types[i]["type"]["name"].toUpperCase();
+        type.classList.add("type");
+        type.classList.add(types[i]["type"]["name"]); // adds background and font colour
+        typesDiv.append(type);
+    }
 }
