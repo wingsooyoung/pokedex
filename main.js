@@ -1,4 +1,4 @@
-const pokemonCount = 151;
+const pokemonCount = 1025;
 var pokedex = {}; // {1 : {"name" : "bulbasaur", "img" : url, "type" : ["grass", "poison"], "desc" : "...."}}
 
 // async function because using await
