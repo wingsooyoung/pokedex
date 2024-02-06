@@ -11,6 +11,7 @@ window.onload = async function() {
         pokemon.id = i;
         pokemon.innerText = i.toString() + ". " + pokedex[i]["name"].toUpperCase();
         pokemon.classList.add("poke-name");
+        pokemon.addEventListener("click", updatePokemon);
         document.getElementById("poke-list").append(pokemon);
     }
     console.log(pokedex);
@@ -35,4 +36,8 @@ async function getPokemon(num) {
     pokemonDesc = pokemonDesc["flavor_text_entries"][0]["flavor_txt"];
 
     pokedex[num] = {"name" : pokemonName, "img" : pokemonImg, "types" : pokemonType, "desc" : pokemonDesc}
+}
+
+function updatePokemon() {
+    document.getElementById("poke-img").src = pokedex[this.id]["img"];
 }
