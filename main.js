@@ -45,6 +45,15 @@ async function getPokemon(num) {
     pokedex[num] = {"name" : pokemonName, "img" : pokemonImg, "types" : pokemonType, "desc" : pokemonDesc}
 }
 
+function createPokemonElement(num) {
+    let pokemon = document.createElement("div");
+    pokemon.id = num;
+    pokemon.innerText = num.toString() + ". " + pokedex[num]["name"].toUpperCase();
+    pokemon.classList.add("poke-name");
+    pokemon.addEventListener("click", updatePokemon);
+    document.getElementById("poke-list").append(pokemon);
+}
+
 function updatePokemon() {
     document.getElementById("poke-img").src = pokedex[this.id]["img"];
 
@@ -68,3 +77,31 @@ function updatePokemon() {
     document.getElementById("poke-description").innerText = pokedex[this.id]["desc"];
 }
 
+// Function to handle search button click event
+function searchPokemon() {
+    let searchInput = document.getElementById("search-input").value.trim();
+    let pokeList = document.getElementById("poke-list");
+    pokeList.innerHTML = ""; // Clear existing Pokémon list
+
+    // Search Pokémon by number
+    let pokemonNumber = parseInt(searchInput);
+    if (!isNaN(pokemonNumber) && pokemonNumber >= 1 && pokemonNumber <= pokemonCount) {
+        createPokemonElement(pokemonNumber);
+    } else {
+        // Search Pokémon by name
+        let name = searchInput.toLowerCase();
+        let found = false;
+        // Iterate through pokedex to find matching Pokémon by name
+        Object.keys(pokedex).forEach(id => {
+            let pokemonName = pokedex[id]["name"].toLowerCase();
+            if (pokemonName.includes(name)) {
+                createPokemonElement(parseInt(id));
+                found = true;
+            }
+        });
+        // If no matching Pokémon found, show alert
+        if (!found) {
+            alert("No Pokémon found with the name '" + name + "' or number '" + searchInput + "'.");
+        }
+    }
+}
