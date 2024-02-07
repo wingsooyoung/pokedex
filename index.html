@@ -9,8 +9,14 @@
     </head>
     <body>
         <h1>MY POKEDEX</h1>
-        <div id="search-box">
+        <form id="search-box">
             <input type="text" id="search-input" placeholder="Search by name or number" oninput="searchPokemon()">
+            <div id="error-message" style="display: none;">No Pokémon found with the name or number entered.</div>
+        </form>
+        <!-- Favorites -->
+        <div id="favorites-box">
+            <h2>Favorites</h2>
+            <ul id="favorites-list"></ul>
         </div>
         <section class="container" id="content">
             <!-- Left -->
@@ -26,3 +32,4 @@
             <div id="poke-list"></div>
         </section>
     </body>
+    </html>

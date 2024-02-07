@@ -60,12 +60,14 @@ body {
 }
 
 /* Heart icon */
-.heart-icon {
+.heart {
     cursor: pointer;
-}
-.heart-icon.liked {
+  }
+  
+.activated-heart {
     color: red;
-}
+  }
+  
 
 /* Pokemon types */
 #poke-types {

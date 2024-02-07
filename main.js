@@ -1,27 +1,49 @@
+document.addEventListener("DOMContentLoaded", initialize)
+const EMPTY_HEART = '♡';
+const FULL_HEART = '♥';
+
 const pokemonCount = 1025;
 var pokedex = {}; // {1 : {"name" : "bulbasaur", "img" : url, "type" : ["grass", "poison"], "desc" : "...."}}
+var likedPokemon = [];
+
 
 // async function because using await
-window.onload = async function() {
+async function initialize() {
     // getPokemon(1);
+    
     for (let i = 1; i <= pokemonCount; i++) {
         await getPokemon(i);
-        //<div></div>
         let pokemon = document.createElement("div");
         pokemon.id = i;
         pokemon.innerText = i.toString() + ". " + pokedex[i]["name"].toUpperCase();
         pokemon.classList.add("poke-name");
         pokemon.addEventListener("click", updatePokemon);
         document.getElementById("poke-list").append(pokemon);
-
+         // Create heart icon
+        let heart = document.createElement("span");
+        heart.classList.add("heart");
+        heart.dataset.pokemonId = i;
+        heart.dataset.liked = pokedex[i].liked ? "true" : "false";
+        heart.innerText = pokedex[i].liked ? FULL_HEART : EMPTY_HEART;
+        heart.addEventListener("click", toggleLike);
+         
+         // Append heart to pokemon name on list
+        pokemon.appendChild(heart);
+ 
+        document.getElementById("poke-list").append(pokemon);
         // set bulbasaur(1) as init
         if (i === 1) {
         document.getElementById("poke-description").innerText = pokedex[1]["desc"];
+
+       // pokemon.map( student => {
+        //    let li = document.createElement("li")
+        //    li.innerHTML = pokemon.name
+        //    favorites-list.appendChild(li)
+      //  })
+        
     }
 
 }
-    
-    console.log(pokedex);
 }
 
 // async function because using await
@@ -48,19 +70,25 @@ async function getPokemon(num) {
 function createPokemonElement(num) {
     let pokemon = document.createElement("div");
     pokemon.id = num;
-    pokemon.innerText = num.toString() + ". " + pokedex[num]["name"].toUpperCase();
-    pokemon.classList.add("poke-name");
-    pokemon.addEventListener("click", updatePokemon);
+    pokemon.innerHTML = `
+        <div class="poke-name">
+            ${num}. ${pokedex[num]["name"].toUpperCase()}
+            <span class="heart" data-pokemon-id="${num}" data-liked="${pokedex[num].liked ? 'true' : 'false'}">${pokedex[num].liked ? FULL_HEART : EMPTY_HEART}</span>
+        </div>
+    `;
     document.getElementById("poke-list").append(pokemon);
+    pokemon.querySelector(".heart").addEventListener("click", toggleLike);
 }
 
 function updatePokemon() {
     document.getElementById("poke-img").src = pokedex[this.id]["img"];
 
     // clear previous type
-    let typesDiv = document.getElementById("poke-types");
-    while (typesDiv.firstChild) {
-        typesDiv.firstChild.remove();
+    function clearPokemon() {
+        let typesDiv = document.getElementById("poke-types");
+        while (typesDiv.firstChild) {
+            typesDiv.firstChild.remove();
+        }
     }
 
     // update types
@@ -77,31 +105,134 @@ function updatePokemon() {
     document.getElementById("poke-description").innerText = pokedex[this.id]["desc"];
 }
 
-// Function to handle search button click event
+// Search filter function
 function searchPokemon() {
     let searchInput = document.getElementById("search-input").value.trim();
     let pokeList = document.getElementById("poke-list");
     pokeList.innerHTML = ""; // Clear existing Pokémon list
 
-    // Search Pokémon by number
+    // Search by number
     let pokemonNumber = parseInt(searchInput);
     if (!isNaN(pokemonNumber) && pokemonNumber >= 1 && pokemonNumber <= pokemonCount) {
         createPokemonElement(pokemonNumber);
-    } else {
-        // Search Pokémon by name
-        let name = searchInput.toLowerCase();
-        let found = false;
-        // Iterate through pokedex to find matching Pokémon by name
-        Object.keys(pokedex).forEach(id => {
-            let pokemonName = pokedex[id]["name"].toLowerCase();
-            if (pokemonName.includes(name)) {
-                createPokemonElement(parseInt(id));
-                found = true;
-            }
+        
+      document.querySelectorAll('.heart').forEach(item => {
+            item.addEventListener('click', toggleLike);
         });
-        // If no matching Pokémon found, show alert
-        if (!found) {
-            alert("No Pokémon found with the name '" + name + "' or number '" + searchInput + "'.");
+        return; // Return early to prevent further execution
+    }
+
+    // Search by name
+    let name = searchInput.toLowerCase();
+    let found = false;
+
+    // Iterate through pokedex to find matching Pokémon by name
+    Object.keys(pokedex).forEach(id => {
+        let pokemonName = pokedex[id]["name"].toLowerCase();
+        if (pokemonName.includes(name)) {
+            createPokemonElement(parseInt(id));
+            found = true;
         }
+    });
+
+    // If no match, show alert
+    if (!found) {
+        alert("No Pokémon found with that match the name or number");
+    }
+
+    // Attach event listeners to hearts after creating Pokémon elements
+    document.querySelectorAll('.heart').forEach(item => {
+        item.addEventListener('click', toggleLike);
+    });
+}
+
+// Function to create a Pokémon element
+function createPokemonElement(num) {
+    let pokemon = document.createElement("div");
+    pokemon.id = num;
+    pokemon.innerHTML = `
+        <div class="poke-name">
+            ${num}. ${pokedex[num]["name"].toUpperCase()}
+            <span class="heart" data-pokemon-id="${num}" data-liked="${pokedex[num].liked ? 'true' : 'false'}">${pokedex[num].liked ? FULL_HEART : EMPTY_HEART}</span>
+        </div>
+    `;
+    document.getElementById("poke-list").append(pokemon);
+    pokemon.addEventListener("click", updatePokemon);
+}
+
+// Function to update the Pokémon details when clicked
+function updatePokemon() {
+    let pokemonId = this.id;
+    document.getElementById("poke-img").src = pokedex[pokemonId]["img"];
+
+    let typesDiv = document.getElementById("poke-types");
+    typesDiv.innerHTML = ""; // Clear previous types
+
+    let types = pokedex[pokemonId]["types"];
+    for (let i = 0; i < types.length; i++) {
+        let type = document.createElement("span");
+        type.innerText = types[i]["type"]["name"].toUpperCase();
+        type.classList.add("type");
+        type.classList.add(types[i]["type"]["name"]);
+        typesDiv.append(type);
+    }
+
+    document.getElementById("poke-description").innerText = pokedex[pokemonId]["desc"];
+}
+
+
+// Like pokemon function
+function toggleLike() {
+    let pokemonId = this.dataset.pokemonId;
+    let isLiked = this.dataset.liked === "true";
+
+    // Toggle liked status
+    this.innerText = isLiked ? EMPTY_HEART : FULL_HEART;
+    this.dataset.liked = !isLiked;
+
+    // Update likedPokemon array
+    if (isLiked) {
+        removeFromFavorites(pokemonId);
+    } else {
+        addToFavorites(pokemonId);
     }
 }
+
+// Function to add a Pokémon to favorites
+function addToFavorites(pokemonId) {
+    if (!likedPokemon.includes(pokemonId)) {
+        likedPokemon.push(pokemonId);
+        updateFavorites();
+        saveFavoritesToJSON();
+    }
+}
+
+// Function to remove a Pokémon from favorites
+function removeFromFavorites(pokemonId) {
+    let index = likedPokemon.indexOf(pokemonId);
+    if (index !== -1) {
+        likedPokemon.splice(index, 1);
+        updateFavorites();
+        saveFavoritesToJSON();
+    }
+}
+
+// Function to update the favorites box
+function updateFavorites() {
+    let favoritesList = document.getElementById("favorites-list");
+    favoritesList.innerHTML = "";
+    likedPokemon.forEach(pokemonId => {
+        let pokemon = pokedex[pokemonId];
+        let pokemonDiv = document.createElement("div");
+        pokemonDiv.classList.add("poke-name");
+        pokemonDiv.dataset.pokemonId = pokemonId;
+        pokemonDiv.innerHTML = `
+            <span class="pokemon-number">${pokemonId}</span>
+            <span class="pokemon-name">${pokemon.name.toUpperCase()}</span>
+            <span class="heart" data-pokemon-id="${pokemonId}" data-liked="true">${FULL_HEART}</span>
+        `;
+        favoritesList.appendChild(pokemonDiv);
+        pokemonDiv.addEventListener("click", updatePokemon);
+    });
+}
+
