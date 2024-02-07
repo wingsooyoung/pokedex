@@ -59,6 +59,15 @@ body {
     overflow-y: auto;
 }
 
+/* Heart icon */
+.heart-icon {
+    cursor: pointer;
+}
+.heart-icon.liked {
+    color: red;
+}
+
+/* Pokemon types */
 #poke-types {
     margin-top: 10px;
 }
