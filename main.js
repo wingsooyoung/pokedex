@@ -72,7 +72,7 @@ function createPokemonElement(num) {
 `;
     document.getElementById("poke-list").append(pokemon);
     pokemon.querySelector(".heart").addEventListener("click", toggleLike);
-    pokemon.addEventListener("click", updatePokemon);
+    pokemon.addEventListener("click", updatePokemon); // this fixes update pokemon issue on search
 }
 
 // updates different pokemon when clicked
