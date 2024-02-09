@@ -38,10 +38,7 @@ async function initialize() {
         document.getElementById("poke-description").innerText = pokedex[1]["desc"];
            
     }
-        //let search = document.querySelector("search-input");
-        // event listener 2 params
-        //search.addEventListener("keypress", searchPokemon);
-}
+
 }
 
 // async function because using await
@@ -143,7 +140,7 @@ function filterByType() {
 }
 
 
-// Function to update the Pokémon details when clicked
+// Function to update the pokemon details when clicked
 function updatePokemon() {
     let pokemonId = this.id;
     document.getElementById("poke-img").src = pokedex[pokemonId]["img"];
@@ -170,40 +167,40 @@ function toggleLike() {
 
     // Toggle liked status
     if (isLiked) {
-        this.innerText = EMPTY_HEART;
-        this.dataset.liked = 'false';
-        this.parentElement.classList.remove('liked'); // Remove the 'liked' class
         removeFromFavorites(pokemonId);
     } else {
-        this.innerText = FULL_HEART;
-        this.dataset.liked = 'true';
-        this.parentElement.classList.add('liked'); // Add the 'liked' class
         addToFavorites(pokemonId);
     }
 
-    // Update liked status in the main Pokemon list
+    // Update liked status in the main list
     let mainPokemon = document.getElementById(pokemonId);
     if (mainPokemon) {
-        mainPokemon.querySelector('.heart').innerText = isLiked ? EMPTY_HEART : FULL_HEART;
-        mainPokemon.querySelector('.heart').dataset.liked = isLiked ? 'false' : 'true';
+        let mainHeart = mainPokemon.querySelector('.heart');
+        mainHeart.innerText = isLiked ? EMPTY_HEART : FULL_HEART;
+        mainHeart.dataset.liked = isLiked ? 'false' : 'true';
+    }
+
+    // Update liked status in the favorites list
+    let favoritePokemon = document.querySelector(`.poke-name[data-pokemon-id="${pokemonId}"] .heart`);
+    if (favoritePokemon) {
+        favoritePokemon.innerText = isLiked ? EMPTY_HEART : FULL_HEART;
+        favoritePokemon.dataset.liked = isLiked ? 'false' : 'true';
     }
 }
+
 
 
 // Function add to favourites
 function addToFavorites(pokemonId) {
     if (!likedPokemon.includes(pokemonId)) {
         likedPokemon.push(pokemonId);
-        pokedex[pokemonId].liked = true; // Update liked status in pokedex
+        // Update liked status in pokedex
         console.log(`Added ${pokemonId} to favorites`);
         updateFavorites();
-        saveFavoritesToJSON();
     }
 }
 
 // Function remove from favorites
-// Problem: can't remove from favourites by clicking heart on favourites
-// It removes it from favourites list but the heart stays coloured on main list
 function removeFromFavorites(pokemonId) {
     let index = likedPokemon.indexOf(pokemonId);
     if (index !== -1) {
@@ -211,11 +208,9 @@ function removeFromFavorites(pokemonId) {
         // Update the liked status in the pokedex object
         pokedex[pokemonId].liked = false; // Set liked status to false
         updateFavorites();
-        saveFavoritesToJSON();
     }
 }
 
-// Update the favourites list
 function updateFavorites() {
     let favoritesList = document.getElementById("favorites-list");
     favoritesList.innerHTML = "";
@@ -227,7 +222,7 @@ function updateFavorites() {
         pokemonDiv.innerHTML = `
             <span class="pokemon-number">${pokemonId}</span>
             <span class="pokemon-name">${pokemon.name.toUpperCase()}</span>
-            <span class="heart" data-pokemon-id="${pokemonId}" data-liked="true">${FULL_HEART}</span>
+            <span class="heart" data-pokemon-id="${pokemonId}" data-liked="${pokemon.liked ? 'true' : 'false'}">${pokemon.liked ? FULL_HEART : EMPTY_HEART}</span>
         `;
         favoritesList.appendChild(pokemonDiv);
         // Add event listener to toggleLike function when clicking on the heart icon
@@ -237,5 +232,6 @@ function updateFavorites() {
         pokedex[pokemonId].liked = true;
     });
 }
+
 
 
