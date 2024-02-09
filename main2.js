@@ -104,16 +104,22 @@ function updatePokemon() {
     document.getElementById("poke-description").innerText = pokedex[this.id]["desc"];
 }
 
-function searchPokemon() {
-    let searchInput = document.getElementById("search-input").value.trim();
-    let selectedType = document.getElementById("type-filter").value.toLowerCase();
+// Search filter function (by name/ number)
+// Problem: when searching, it finds the pokemon but then list starts to load again
+function searchPokemon() { // why is this not working?
+
+    let searchInput = document.getElementById("search-input").value.trim(); // trim to fix whitespace issues?
     let pokeList = document.getElementById("poke-list");
     pokeList.innerHTML = ""; // Clear existing list
 
     // Search by number
     let pokemonNumber = parseInt(searchInput);
     if (!isNaN(pokemonNumber) && pokemonNumber >= 1 && pokemonNumber <= pokemonCount) {
-        createPokemonElement(pokemonNumber);
+        createPokemonElement(pokemonNumber); // Issue
+        console.log("number");
+        document.querySelectorAll('.heart').forEach(item => {
+            item.addEventListener('click', toggleLike);
+        });
         return;
     }
 
@@ -124,22 +130,27 @@ function searchPokemon() {
     // Iterate through pokedex to find matching pokemon by name
     Object.keys(pokedex).forEach(id => {
         let pokemonName = pokedex[id]["name"].toLowerCase();
-        let pokemonTypes = pokedex[id]["types"].map(type => type["type"]["name"].toLowerCase());
-        if (pokemonName.includes(name) && (selectedType === "all" || pokemonTypes.includes(selectedType))) {
+        if (pokemonName.includes(name)) {
             createPokemonElement(parseInt(id));
             found = true;
+            console.log("name");
         }
     });
 
     // If no match, show alert
+    // I want this to be an error message instead of alert but I'm struggling to make it go away when name/number deleted
     if (!found) {
-        alert("No Pokémon found with the name or number entered.");
+        alert("No Pokémon found with that match the name or number");
     }
+
+    document.querySelectorAll('.heart').forEach(item => {
+        item.addEventListener('click', toggleLike);
+    });
 }
 
 
 function filterByType() {
-    searchPokemon();
+
 }
 
 
