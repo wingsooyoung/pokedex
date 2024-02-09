@@ -72,6 +72,7 @@ function createPokemonElement(num) {
 `;
     document.getElementById("poke-list").append(pokemon);
     pokemon.querySelector(".heart").addEventListener("click", toggleLike);
+    pokemon.addEventListener("click", updatePokemon);
 }
 
 // updates different pokemon when clicked
@@ -119,6 +120,7 @@ function searchPokemon() {
         if (pokemonName.includes(name) && (selectedType === "all" || pokemonTypes.includes(selectedType))) {
             createPokemonElement(parseInt(id));
             found = true;
+            
         }
     });
 
@@ -127,6 +129,7 @@ function searchPokemon() {
         alert("No Pokémon found with the name or number entered.");
         document.getElementById("search-input").value = ""; // clears the input box after the alert has shown
     }
+   
     
 }
 
@@ -136,6 +139,7 @@ function searchPokemon() {
 // eg if you have type selected, and you use the searchbox it only searches through what is filtered
 function filterByType() {
     searchPokemon();
+    
 }
 
 // Function to update the pokemon details when clicked
