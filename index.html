@@ -10,11 +10,10 @@
     <body>
         <h1>MY POKEDEX</h1>
         <form id="search-box">
-            <label for="search-input">Search by Name or Number:</label>
-            <input type="text" id="search-input" placeholder="Search by name or number" oninput="searchPokemon()">
-            <div id="error-message" style="display: none;">No Pokémon found with the name or number entered.</div>
+            <label for="search-input">Search by Name or Number:</label><br>
+            <input type="text" id="search-input" placeholder="Search by name or number" oninput="searchPokemon()"><br>
             
-            <label for="type-filter">Filter by Type:</label>
+            <label for="type-filter">Filter by Type:</label><br>
             <select id="type-filter" onchange="filterByType()">
                 <option value="all">All Types</option>
                 <option value="normal">Normal</option>
@@ -40,7 +39,7 @@
         <section class="container">
 
             <div id="favorites-box">
-                <h2>Favorites</h2>
+                <h2>MY POKEMON</h2>
                 <ul id="favorites-list"></ul>
             </div>
 

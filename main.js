@@ -1,33 +1,31 @@
-document.addEventListener("DOMContentLoaded", initialize);
+document.addEventListener("DOMContentLoaded", initialize); // ensures JS runs after HTML has loaded
+
+// consts to represent the hearts used for the like toggle function and add to favourites
 const EMPTY_HEART = '♡';
 const FULL_HEART = '♥';
 
-const pokemonCount = 151;
+const pokemonCount = 151; // total number of pokemon being fetched through pokiapi
 var pokedex = {}; // {1 : {"name" : "bulbasaur", "img" : url, "type" : ["grass", "poison"], "desc" : "...."}}
-var likedPokemon = [];
+var likedPokemon = []; // array used to store liked pokemon
 
 
 // async function because using await
 async function initialize() {
-    // getPokemon(1);
-    // search and filtER not connected to how initially generated list
-    // search needs to be within div (pokemon list)
-    // use pokemon id to search for that
-    for (let i = 1; i <= pokemonCount; i++) {
-        await getPokemon(i);
+    for (let i = 1; i <= pokemonCount; i++) { // for loop to iterate through total poke available in my project (1-151)
+        await getPokemon(i); // async function fetch data
         let pokemon = document.createElement("div");
         pokemon.id = i;
         pokemon.innerText = i.toString() + ". " + pokedex[i]["name"].toUpperCase();
         pokemon.classList.add("poke-name");
-        pokemon.addEventListener("click", updatePokemon);
+        pokemon.addEventListener("click", updatePokemon); // updates pokemon when clicked on
         document.getElementById("poke-list").append(pokemon);
-         // Create heart icon
+         // Create heart icon 
         let heart = document.createElement("span");
         heart.classList.add("heart");
         heart.dataset.pokemonId = i;
         heart.dataset.liked = pokedex[i].liked ? "true" : "false";
         heart.innerText = pokedex[i].liked ? FULL_HEART : EMPTY_HEART;
-        heart.addEventListener("click", toggleLike);
+        heart.addEventListener("click", toggleLike); // toggles whether pokemon is liked or unliked
          
          // Append heart to pokemon name on list
         pokemon.appendChild(heart);
@@ -35,13 +33,13 @@ async function initialize() {
         document.getElementById("poke-list").append(pokemon);
         // set bulbasaur(1) as init
         if (i === 1) {
-        document.getElementById("poke-description").innerText = pokedex[1]["desc"];
-           
+        document.getElementById("poke-description").innerText = pokedex[1]["desc"];   
     }
-
+}
 }
 
 // async function because using await
+// fetches detailed info about each pokemon from pokeapi
 async function getPokemon(num) {
     let url = "https://pokeapi.co/api/v2/pokemon/" + num.toString();
 
@@ -57,10 +55,11 @@ async function getPokemon(num) {
     let pokemonDesc = await res.json();
 
     // console.log(pokemonDesc);
-    pokemonDesc = pokemonDesc["flavor_text_entries"][0]["flavor_text"];
+    pokemonDesc = pokemonDesc["flavor_text_entries"][8]["flavor_text"];
     pokedex[num] = {"name" : pokemonName, "img" : pokemonImg, "types" : pokemonType, "desc" : pokemonDesc}
 }
 
+// creates HTML content for pokemon element
 function createPokemonElement(num) {
     let pokemon = document.createElement("div");
     pokemon.id = num;
@@ -75,17 +74,10 @@ function createPokemonElement(num) {
     pokemon.querySelector(".heart").addEventListener("click", toggleLike);
 }
 
-
+// updates different pokemon when clicked
 function updatePokemon() {
     document.getElementById("poke-img").src = pokedex[this.id]["img"];
 
-    // clear previous type
-    function clearPokemon() {
-        let typesDiv = document.getElementById("poke-types");
-        while (typesDiv.firstChild) {
-            typesDiv.firstChild.remove();
-        }
-    }
 
     // update types
     let types = pokedex[this.id]["types"];
@@ -101,6 +93,8 @@ function updatePokemon() {
     document.getElementById("poke-description").innerText = pokedex[this.id]["desc"];
 }
 
+// function allows you to search for pokemon via name or number, if not found then an alert is shown and text box clears afterwards
+// also a getElementById for type-filter search
 function searchPokemon() {
     let searchInput = document.getElementById("search-input").value.trim();
     let selectedType = document.getElementById("type-filter").value.toLowerCase();
@@ -131,14 +125,18 @@ function searchPokemon() {
     // If no match, show alert
     if (!found) {
         alert("No Pokémon found with the name or number entered.");
+        document.getElementById("search-input").value = ""; // clears the input box after the alert has shown
     }
+    
 }
 
 
+// I don't fully understand how this works but it seems to be working?
+// However I would have liked to implement a feature that combines the searches
+// eg if you have type selected, and you use the searchbox it only searches through what is filtered
 function filterByType() {
     searchPokemon();
 }
-
 
 // Function to update the pokemon details when clicked
 function updatePokemon() {
@@ -160,41 +158,38 @@ function updatePokemon() {
     document.getElementById("poke-description").innerText = pokedex[pokemonId]["desc"];
 }
 
-
 function toggleLike() {
     let pokemonId = this.dataset.pokemonId;
     let isLiked = this.dataset.liked === "true";
 
     // Toggle liked status
     if (isLiked) {
+        this.innerText = EMPTY_HEART;
+        this.dataset.liked = 'false';
+        this.parentElement.classList.remove('liked'); // Remove the 'liked' class
+        this.classList.remove('clicked');
         removeFromFavorites(pokemonId);
     } else {
+        this.innerText = FULL_HEART;
+        this.dataset.liked = 'true';
+        this.parentElement.classList.add('liked'); // Add the 'liked' class
+        this.classList.add('clicked');
         addToFavorites(pokemonId);
     }
 
-    // Update liked status in the main list
+    // Update liked status in the main Pokemon list
     let mainPokemon = document.getElementById(pokemonId);
     if (mainPokemon) {
-        let mainHeart = mainPokemon.querySelector('.heart');
-        mainHeart.innerText = isLiked ? EMPTY_HEART : FULL_HEART;
-        mainHeart.dataset.liked = isLiked ? 'false' : 'true';
-    }
-
-    // Update liked status in the favorites list
-    let favoritePokemon = document.querySelector(`.poke-name[data-pokemon-id="${pokemonId}"] .heart`);
-    if (favoritePokemon) {
-        favoritePokemon.innerText = isLiked ? EMPTY_HEART : FULL_HEART;
-        favoritePokemon.dataset.liked = isLiked ? 'false' : 'true';
+        mainPokemon.querySelector('.heart').innerText = isLiked ? EMPTY_HEART : FULL_HEART;
+        mainPokemon.querySelector('.heart').dataset.liked = isLiked ? 'false' : 'true';
     }
 }
-
-
 
 // Function add to favourites
 function addToFavorites(pokemonId) {
     if (!likedPokemon.includes(pokemonId)) {
         likedPokemon.push(pokemonId);
-        // Update liked status in pokedex
+        pokedex[pokemonId].liked = true; // Update liked status in pokedex
         console.log(`Added ${pokemonId} to favorites`);
         updateFavorites();
     }
@@ -211,6 +206,7 @@ function removeFromFavorites(pokemonId) {
     }
 }
 
+// Function to remove from favourites
 function updateFavorites() {
     let favoritesList = document.getElementById("favorites-list");
     favoritesList.innerHTML = "";
