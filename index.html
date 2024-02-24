@@ -12,7 +12,9 @@
         <form id="search-box">
             <label for="search-input">Search by Name or Number:</label><br>
             <input type="text" id="search-input" placeholder="Search by name or number" oninput="searchPokemon()"><br>
-            
+            <div id="error-container">
+            <div id="error-message"></div>
+            </div>
             <label for="type-filter">Filter by Type:</label><br>
             <select id="type-filter" onchange="filterByType()">
                 <option value="all">All Types</option>
@@ -28,9 +30,8 @@
                 <option value="rock">Rock</option>
                 <option value="ground">Ground</option>
                 <option value="steel">Steel</option>
-                <option value="dark">Dark</option>
+                <option value="electric">Electric</option>
                 <option value="psycic">Psycic</option>
-                <option value="fairy">Fairy</option>
                 <option value="dragon">Dragon</option>
                 <option value="poison">Poison</option>
             </select>
@@ -46,7 +47,7 @@
             <div id="content">
                 <!-- Left -->
                 <div id="poke-info">
-                    <img id="poke-img" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png">
+                    <img id="poke-img" src="">
                     <div id="poke-types">
                         <span class="type grass">GRASS</span>
                         <span class="type poison">POISON</span>

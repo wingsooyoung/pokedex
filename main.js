@@ -11,32 +11,33 @@ var likedPokemon = []; // array used to store liked pokemon
 
 // async function because using await
 async function initialize() {
-    for (let i = 1; i <= pokemonCount; i++) { // for loop to iterate through total poke available in my project (1-151)
-        await getPokemon(i); // async function fetch data
+    for (let i = 1; i <= pokemonCount; i++) { 
+        await getPokemon(i); 
         let pokemon = document.createElement("div");
         pokemon.id = i;
         pokemon.innerText = i.toString() + ". " + pokedex[i]["name"].toUpperCase();
         pokemon.classList.add("poke-name");
-        pokemon.addEventListener("click", updatePokemon); // updates pokemon when clicked on
-        document.getElementById("poke-list").append(pokemon);
-         // Create heart icon 
+        pokemon.addEventListener("click", updatePokemon); 
+        
         let heart = document.createElement("span");
         heart.classList.add("heart");
         heart.dataset.pokemonId = i;
         heart.dataset.liked = pokedex[i].liked ? "true" : "false";
         heart.innerText = pokedex[i].liked ? FULL_HEART : EMPTY_HEART;
-        heart.addEventListener("click", toggleLike); // toggles whether pokemon is liked or unliked
-         
-         // Append heart to pokemon name on list
+        heart.addEventListener("click", toggleLike); 
         pokemon.appendChild(heart);
- 
-        document.getElementById("poke-list").append(pokemon);
-        // set bulbasaur(1) as init
+        
+        // Append the created pokemon div to the list
+        document.getElementById("poke-list").appendChild(pokemon);
+
         if (i === 1) {
-        document.getElementById("poke-description").innerText = pokedex[1]["desc"];   
+            document.getElementById("poke-description").innerText = pokedex[1]["desc"];   
+            document.getElementById("poke-img").src = pokedex[1]["img"];
+            // document.getElementById("poke-types").innerText = pokedex[1]["types"];
+        }
     }
 }
-}
+
 
 // async function because using await
 // fetches detailed info about each pokemon from pokeapi
@@ -100,7 +101,10 @@ function searchPokemon() {
     let searchInput = document.getElementById("search-input").value.trim();
     let selectedType = document.getElementById("type-filter").value.toLowerCase();
     let pokeList = document.getElementById("poke-list");
-    pokeList.innerHTML = ""; // Clear existing list
+    // pokeList.innerHTML = ""; // Clear existing list
+     // Clear only the search results list
+     let searchResults = document.querySelectorAll(".poke-name");
+     searchResults.forEach(result => result.remove());
 
     // Search by number
     let pokemonNumber = parseInt(searchInput);
@@ -124,13 +128,18 @@ function searchPokemon() {
         }
     });
 
-    // If no match, show alert
+    // If no match, show error message
     if (!found) {
-        alert("No Pokémon found with the name or number entered.");
-        document.getElementById("search-input").value = ""; // clears the input box after the alert has shown
+        // check if type has been selected by checking if all not set and show error message saying cant find in this type
+        if (selectedType !== "all") {
+            document.getElementById("error-message").innerText = `No Pokémon found of type "${selectedType}" with the name or number entered.`;
+        } else {
+            document.getElementById("error-message").innerText = "No Pokémon found with the name or number entered.";
+        }
+    } else {
+        document.getElementById("error-message").innerText = ""; // Clear error message if text deleted
     }
-   
-    
+
 }
 
 
@@ -173,12 +182,14 @@ function toggleLike() {
         this.parentElement.classList.remove('liked'); // Remove the 'liked' class
         this.classList.remove('clicked');
         removeFromFavorites(pokemonId);
+        this.classList.remove('red-heart');
     } else {
         this.innerText = FULL_HEART;
         this.dataset.liked = 'true';
         this.parentElement.classList.add('liked'); // Add the 'liked' class
         this.classList.add('clicked');
         addToFavorites(pokemonId);
+        this.classList.add('red-heart');
     }
 
     // Update liked status in the main Pokemon list
@@ -186,16 +197,20 @@ function toggleLike() {
     if (mainPokemon) {
         mainPokemon.querySelector('.heart').innerText = isLiked ? EMPTY_HEART : FULL_HEART;
         mainPokemon.querySelector('.heart').dataset.liked = isLiked ? 'false' : 'true';
+        mainPokemon.querySelector('.heart').classList.toggle('red-heart', !isLiked);
     }
 }
 
 // Function add to favourites
 function addToFavorites(pokemonId) {
+    // checks if pokemonId is already in likedPokemon array or not
+    // include method to make sure that duplicate pokemon not added
     if (!likedPokemon.includes(pokemonId)) {
-        likedPokemon.push(pokemonId);
-        pokedex[pokemonId].liked = true; // Update liked status in pokedex
-        console.log(`Added ${pokemonId} to favorites`);
-        updateFavorites();
+        //if not in favourites
+        likedPokemon.push(pokemonId); // pushes pokemonId into likedPokemon array
+        pokedex[pokemonId].liked = true; // Update liked status in pokedex (for heart container) toggleLike function
+        console.log(`Added ${pokemonId} to favorites`); // check console pokemon added
+        updateFavorites(); // calls updateFavourites function to update HTML showing the Pokemon favourites
     }
 }
 
@@ -206,24 +221,30 @@ function removeFromFavorites(pokemonId) {
         likedPokemon.splice(index, 1);
         // Update the liked status in the pokedex object
         pokedex[pokemonId].liked = false; // Set liked status to false
-        updateFavorites();
+        updateFavorites();  // calls updateFavourites function to update HTML showing the Pokemon favourites
     }
 }
 
-// Function to remove from favourites
+// Update favourites
+// This is for updating the HTML list
 function updateFavorites() {
     let favoritesList = document.getElementById("favorites-list");
-    favoritesList.innerHTML = "";
+    favoritesList.innerHTML = ""; // initialised as an empty list
+    // iterating through each pokemon id in likedPokemon array
     likedPokemon.forEach(pokemonId => {
         let pokemon = pokedex[pokemonId];
+        // creates div
         let pokemonDiv = document.createElement("div");
         pokemonDiv.classList.add("poke-name");
+        // only shows pokemon number, name and appended heart icon
+        // attached heart and red-heart class same as full list
         pokemonDiv.dataset.pokemonId = pokemonId;
         pokemonDiv.innerHTML = `
             <span class="pokemon-number">${pokemonId}</span>
             <span class="pokemon-name">${pokemon.name.toUpperCase()}</span>
-            <span class="heart" data-pokemon-id="${pokemonId}" data-liked="${pokemon.liked ? 'true' : 'false'}">${pokemon.liked ? FULL_HEART : EMPTY_HEART}</span>
+            <span class="heart red-heart" data-pokemon-id="${pokemonId}" data-liked="${pokemon.liked ? 'true' : 'false'}">${pokemon.liked ? FULL_HEART : EMPTY_HEART}</span>
         `;
+        // appends newly created div to favourites list
         favoritesList.appendChild(pokemonDiv);
         // Add event listener to toggleLike function when clicking on the heart icon
         pokemonDiv.querySelector('.heart').addEventListener('click', toggleLike);

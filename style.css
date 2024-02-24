@@ -17,11 +17,23 @@ h1 {
     color: white;
     padding: 10px;
 }
-
+#error-container {
+    margin-bottom: 20px; /* Adjust the margin as needed */
+    height: 20px;
+}
+#error-message {
+    color: red;
+    display: block; 
+}
 .container {
     display: flex; 
     width: 90%;
     margin: 0 auto;
+}
+
+.red-heart {
+    color: red;
+    font-size: 1.2em;
 }
 
 #favorites-box {
@@ -107,6 +119,7 @@ h1 {
 /* Heart icon */
 .heart {
     cursor: pointer;
+    margin-left: 5px;
     
   }
   
