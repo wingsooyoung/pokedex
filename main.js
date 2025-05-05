@@ -241,10 +241,10 @@ function updateFavorites() {
         // attached heart and red-heart class same as full list
         pokemonDiv.dataset.pokemonId = pokemonId;
         pokemonDiv.innerHTML = `
-            <span class="pokemon-number">${pokemonId}</span>
-            <span class="pokemon-name">${pokemon.name.toUpperCase()}</span>
-            <span class="heart red-heart" data-pokemon-id="${pokemonId}" data-liked="${pokemon.liked ? 'true' : 'false'}">${pokemon.liked ? FULL_HEART : EMPTY_HEART}</span>
-        `;
+        <span class="pokemon-number">${pokemonId}.</span> 
+        <span class="pokemon-name">${pokemon.name.toUpperCase()}</span>
+        <span class="heart red-heart" data-pokemon-id="${pokemonId}" data-liked="${pokemon.liked ? 'true' : 'false'}">${pokemon.liked ? FULL_HEART : EMPTY_HEART}</span>
+    `;
         // appends newly created div to favourites list
         favoritesList.appendChild(pokemonDiv);
         // Add event listener to toggleLike function when clicking on the heart icon

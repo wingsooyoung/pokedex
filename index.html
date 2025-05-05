@@ -1,65 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Pokédex</title>
-        <link rel="stylesheet" href="style.css">
-        <script src="./main.js"></script>
-    </head>
-    <body>
-        <h1>MY POKEDEX</h1>
-        <form id="search-box">
-            <label for="search-input">Search by Name or Number:</label><br>
-            <input type="text" id="search-input" placeholder="Search by name or number" oninput="searchPokemon()"><br>
-            <div id="error-container">
-            <div id="error-message"></div>
-            </div>
-            <label for="type-filter">Filter by Type:</label><br>
-            <select id="type-filter" onchange="filterByType()">
-                <option value="all">All Types</option>
-                <option value="normal">Normal</option>
-                <option value="fire">Fire</option>
-                <option value="grass">Grass</option>
-                <option value="water">Water</option>
-                <option value="ice">Ice</option>
-                <option value="fighting">Fighting</option>
-                <option value="flying">Flying</option>
-                <option value="bug">Bug</option>
-                <option value="ghost">Ghost</option>
-                <option value="rock">Rock</option>
-                <option value="ground">Ground</option>
-                <option value="steel">Steel</option>
-                <option value="electric">Electric</option>
-                <option value="psycic">Psycic</option>
-                <option value="dragon">Dragon</option>
-                <option value="poison">Poison</option>
-            </select>
-        </form>
-        <!-- Favorites -->
-        <section class="container">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pokédex</title>
+  <link rel="stylesheet" href="style.css"/>
+  <script src="main.js" defer></script>
+</head>
+<body>
+  <h1>MY POKEDEX</h1>
 
-            <div id="favorites-box">
-                <h2>MY POKEMON</h2>
-                <ul id="favorites-list"></ul>
-            </div>
+  <!-- Search Form -->
+  <form id="search-box">
+    <label for="search-input">Search by Name or Number:</label><br>
+    <input
+      type="text"
+      id="search-input"
+      placeholder="Search by name or number"
+      oninput="searchPokemon()"
+    /><br>
 
-            <div id="content">
-                <!-- Left -->
-                <div id="poke-info">
-                    <img id="poke-img" src="">
-                    <div id="poke-types">
-                        <span class="type grass">GRASS</span>
-                        <span class="type poison">POISON</span>
-                    </div>
-                    <div id="poke-description">
-                    </div>
-                </div>
-                <!-- Right -->
-                <div id="poke-list">
-                    <div id="poke-no"></div>
-                </div>
+    <label for="type-filter">Filter by Type:</label><br>
+    <select id="type-filter" onchange="filterByType()">
+      <option value="all">All Types</option>
+      <option value="normal">Normal</option>
+      <option value="fire">Fire</option>
+      <option value="grass">Grass</option>
+      <option value="water">Water</option>
+      <option value="ice">Ice</option>
+      <option value="fighting">Fighting</option>
+      <option value="flying">Flying</option>
+      <option value="bug">Bug</option>
+      <option value="ghost">Ghost</option>
+      <option value="rock">Rock</option>
+      <option value="ground">Ground</option>
+      <option value="steel">Steel</option>
+      <option value="electric">Electric</option>
+      <option value="psychic">Psychic</option>
+      <option value="dragon">Dragon</option>
+      <option value="poison">Poison</option>
+    </select>
+    
+    <div id="error-container">
+      <div id="error-message"></div>
+    </div>
+  </form>
+
+  <!-- Main Container -->
+  <section class="container">
+
+    <!-- Content Area -->
+    <div id="poke-content">
+        
+        <!-- Pokémon Info -->
+        <div id="poke-info">
+            <div class="poke-image">
+            <img id="poke-img" src="" alt="Pokemon Image"/>
             </div>
-        </section>
-    </body>
-    </html>
+            <div id="poke-types">
+            <span class="type grass">GRASS</span>
+            <span class="type poison">POISON</span>
+            </div>
+            <div class="poke-description" id="poke-description"></div>
+        </div>
+    
+        <!-- Pokémon List -->
+        <div id="poke-list">
+            <div id="poke-no"></div>
+        </div>
+    </div>
+
+    <!-- Favorites -->
+    <div id="favorites-box">
+      <h2>MY POKEMON</h2>
+      <ul id="favorites-list"></ul>
+    </div>
+
+
+  </section>
+</body>
+</html>
