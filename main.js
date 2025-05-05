@@ -195,6 +195,7 @@ function toggleLike() {
     // Update liked status in the main Pokemon list
     let mainPokemon = document.getElementById(pokemonId);
     if (mainPokemon) {
+
         mainPokemon.querySelector('.heart').innerText = isLiked ? EMPTY_HEART : FULL_HEART;
         mainPokemon.querySelector('.heart').dataset.liked = isLiked ? 'false' : 'true';
         mainPokemon.querySelector('.heart').classList.toggle('red-heart', !isLiked);

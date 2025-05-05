@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'PokemonHollow';
+    src: url('./assets/fonts/pokemon_hollow.ttf') format('truetype');
+}
+
 body {
     background-color: black;
     font-family: Arial, Helvetica, sans-serif;
@@ -7,7 +12,9 @@ h1 {
     text-align: center;
     font-size: 80px;
     color: white;
+    font-family: 'PokemonHollow', Arial, Helvetica, sans-serif;
 }
+
 
 /* Search box */
 #search-box {
