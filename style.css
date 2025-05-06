@@ -29,6 +29,10 @@ h1 {
   margin-bottom: 1rem;
 }
 
+h2 {
+  text-align: center;
+}
+
 /* FORM */
 #search-box {
   text-align: center;
@@ -108,7 +112,7 @@ h1 {
   flex-direction: column;
   gap: 10px;
   padding: 10px;
-  overflow: auto;
+  /* overflow: auto; */
 }
 
 #poke-list,
@@ -175,17 +179,6 @@ h1 {
   background-color: yellow;
 }
 
-
-/* 
-#favorites-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  flex: 1;
-  overflow-y: auto;
-  height: 100%;
-} */
-
 /* HEART */
 .heart {
   cursor: pointer;
@@ -230,35 +223,23 @@ h1 {
 .dragon { background-color: teal; color: white; }
 .poison { background-color: darkviolet; color: white; }
 
-#favorites-list::-webkit-scrollbar,
-#poke-info::-webkit-scrollbar,
-#poke-list::-webkit-scrollbar,
-#poke-description::-webkit-scrollbar {
-  width: 8px;
-}
 
-#favorites-list::-webkit-scrollbar-thumb,
-#poke-info::-webkit-scrollbar-thumb,
-#poke-list::-webkit-scrollbar-thumb,
-#poke-description::-webkit-scrollbar-thumb {
-  background-color: rgba(255, 255, 255, 0.6);
-  border-radius: 5px;
-}
-
-#favorites-list::-webkit-scrollbar-track,
-#poke-list::-webkit-scrollbar-track,
-#poke-description::-webkit-scrollbar-track {
-  background-color: rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
-}
 
 @media (max-width: 768px) {
+  body {
+    margin: 1rem;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+  }
+
   .col {
     flex: 1 1 100%;
     border: 1px solid white;
     box-sizing: border-box;
     height: 200px;
-    padding: 5px;
+    padding: 0.5rem;
   }
 
   #poke-content {
@@ -267,27 +248,28 @@ h1 {
   }
 
   #poke-list,
-  #poke-info {
+  #poke-info, #favorites-list {
     width: 100%;
     flex: 1 1 auto;
+    align-items: center;
   }
 
   #poke-list {
     max-height: 300px;
-    overflow-y: auto;
   }
 
-  #poke-list::-webkit-scrollbar {
-    width: 8px;
+  #poke-list,
+  #favorites-list {
+    overflow-y: visible;
+    max-height: unset;
   }
 
-  #poke-list::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.6);
-    border-radius: 10px;
+  #poke-list, #poke-description{
+    font-size: 1rem;
   }
 
-  #poke-list::-webkit-scrollbar-track {
-    background-color: white;
-    border-radius: 10px;
+  .poke-name {
+    font-size: 0.8rem;
   }
+
 }
