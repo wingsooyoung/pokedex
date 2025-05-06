@@ -5,7 +5,7 @@
 
 @font-face {
   font-family: 'Roboto';
-  src: url('./assets/fonts/roboto.ttf') format('truetype');
+  src: url('./assets/fonts/roboto-regular.ttf') format('truetype');
 }
 
 * {
@@ -31,6 +31,8 @@ h1 {
 
 h2 {
   text-align: center;
+  font-family: 'PokemonHollow', 'Roboto', Arial, sans-serif;
+
 }
 
 /* FORM */
