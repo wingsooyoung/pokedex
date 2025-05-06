@@ -90,8 +90,20 @@ function createPokemonElement(num) {
 }
 
 function updatePokemon() {
-    let pokemonId = this.id;
-    document.getElementById("poke-name").innerText = pokedex[pokemonId]["name"].charAt(0).toUpperCase() + pokedex[pokemonId]["name"].slice(1);
+    let pokemonId = this.id || this.dataset.pokemonId;
+
+    document.querySelectorAll(".poke-name").forEach(el => {
+        el.classList.remove("selected");
+    });
+
+    const selectedMain = document.querySelector(`#poke-list .poke-name[id='${pokemonId}']`);
+    if (selectedMain) selectedMain.classList.add("selected");
+
+    const selectedFav = document.querySelector(`#favorites-list .poke-name[data-pokemon-id='${pokemonId}']`);
+    if (selectedFav) selectedFav.classList.add("selected");
+
+    document.getElementById("poke-name").innerText =
+        pokedex[pokemonId]["name"].charAt(0).toUpperCase() + pokedex[pokemonId]["name"].slice(1);
     document.getElementById("poke-img").src = pokedex[pokemonId]["img"];
     document.getElementById("poke-description").innerText = pokedex[pokemonId]["desc"];
 
@@ -107,6 +119,7 @@ function updatePokemon() {
         typesDiv.appendChild(type);
     });
 }
+
 
 function searchPokemon() {
     let searchInput = document.getElementById("search-input").value.trim().toLowerCase();
@@ -158,6 +171,18 @@ function toggleLike(e) {
         this.parentElement.classList.add('liked');
         addToFavorites(pokemonId);
     }
+    const mainListHeart = document.querySelector(`#poke-list .poke-name[id='${pokemonId}'] .heart`);
+    if (mainListHeart && mainListHeart !== this) {
+        if (isLiked) {
+            mainListHeart.innerText = EMPTY_HEART;
+            mainListHeart.dataset.liked = 'false';
+            mainListHeart.classList.remove('red-heart');
+        } else {
+            mainListHeart.innerText = FULL_HEART;
+            mainListHeart.dataset.liked = 'true';
+            mainListHeart.classList.add('red-heart');
+        }
+    }
 }
 
 function addToFavorites(pokemonId) {
@@ -196,13 +221,9 @@ function updateFavorites() {
         pokemonDiv.classList.add("poke-name");
         pokemonDiv.dataset.pokemonId = pokemonId;
 
-        let numberSpan = document.createElement("span");
-        numberSpan.classList.add("pokemon-number");
-        numberSpan.innerText = `${pokemonId}. `;
-
         let nameSpan = document.createElement("span");
         nameSpan.classList.add("pokemon-name");
-        nameSpan.innerText = pokemon.name.toUpperCase();
+        nameSpan.innerText = `${pokemonId}. ${pokemon.name.toUpperCase()}`;
 
         let heartSpan = document.createElement("span");
         heartSpan.classList.add("heart", "red-heart");
@@ -211,11 +232,14 @@ function updateFavorites() {
         heartSpan.innerText = FULL_HEART;
         heartSpan.addEventListener("click", toggleLike);
 
-        pokemonDiv.appendChild(numberSpan);
         pokemonDiv.appendChild(nameSpan);
         pokemonDiv.appendChild(heartSpan);
 
         favoritesList.appendChild(pokemonDiv);
-        pokemonDiv.addEventListener("click", updatePokemon);
+
+        pokemonDiv.addEventListener("click", function () {
+            updatePokemon.call({ id: pokemonId });
+        });
     });
 }
+

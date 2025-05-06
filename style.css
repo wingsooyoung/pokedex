@@ -2,10 +2,18 @@
   font-family: 'PokemonHollow';
   src: url('./assets/fonts/pokemon_hollow.ttf') format('truetype');
 }
-
+@font-face {
+  font-family: 'PokemonSolid';
+  src: url('./assets/fonts/pokemon_solid.ttf') format('truetype');
+}
 @font-face {
   font-family: 'Roboto';
   src: url('./assets/fonts/roboto-regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Arcade';
+  src: url('./assets/fonts/arcade.ttf') format('truetype');
 }
 
 * {
@@ -21,6 +29,13 @@ body {
   padding: 1rem;
   margin: 2rem;
 }
+
+#loading-screen {
+  text-align: center;
+  padding: 2em;
+  font-size: 1.5em;
+}
+
 
 h1 {
   text-align: center;
@@ -118,7 +133,6 @@ h2 {
   flex-direction: column;
   gap: 10px;
   padding: 10px;
-  /* overflow: auto; */
 }
 
 #poke-list,
@@ -174,9 +188,14 @@ h2 {
   align-items: center;
   border: 1px solid white;
   position: relative;
+  font-family: 'Arcade', 'Roboto', Arial, sans-serif;
 }
 
 .poke-name:hover {
+  background-color: grey;
+}
+
+.poke-name.selected {
   background-color: grey;
 }
 
