@@ -4,9 +4,7 @@ A simple web application that displays the original 151 Pokémon using data from
 
 🌐 [Live Demo](https://pokedex-mu-bay.vercel.app/)
 
-Have a go on Vercel 
-
-🧬 [https://github.com/saradomincroft/pokedex.git]
+🧬 [Clone the Repository](https://github.com/saradomincroft/pokedex.git)
 
 ## 🚀 Features
 
