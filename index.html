@@ -8,7 +8,7 @@
   <script src="main.js" defer></script>
 </head>
 <body>
-  <h1>MY POKEDEX</h1>
+  <h1 id="header-title">MY POKEDEX</h1>
 
   <!-- Search Form -->
   <form id="search-box">
@@ -48,40 +48,33 @@
 
   <!-- Main Container -->
   <section class="container">
-
     <div class="row">
-
       <!-- Pokémon Info Column -->
       <div class="col">
+        <h2 id="poke-name">—</h2>
         <div id="poke-info">
             <div class="poke-image">
-            <img id="poke-img" src="" alt="Pokemon Image"/>
+              <img id="poke-img" src="" alt="Pokemon Image"/>
             </div>
-            <div id="poke-types">
-            <span class="type grass">GRASS</span>
-            <span class="type poison">POISON</span>
-            </div>
+            <div id="poke-types"></div>
             <div class="poke-description" id="poke-description"></div>
         </div>
       </div>
 
       <!-- Pokémon List Column -->
       <div class="col">
-        <div id="poke-list">
-            <div id="poke-no"></div>
-        </div>
+        <h2>Pokémon Index</h2>
+        <div id="poke-list"></div>
       </div>
 
       <!-- Favorites Column -->
       <div class="col" id="favourites-col">
         <div id="favorites-box">
-          <h2>MY POKEMON</h2>
+          <h2>My Pokémon</h2>
           <ul id="favorites-list"></ul>
         </div>
       </div>
-
     </div>
-
   </section>
 </body>
 </html>
