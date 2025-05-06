@@ -53,6 +53,10 @@ h2 {
   max-width: 766px;
 }
 
+#search-box select {
+  cursor: pointer;
+}
+
 #error-message {
   height: 32px;
   margin-bottom: 10px;

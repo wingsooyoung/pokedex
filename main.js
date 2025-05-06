@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", initialize);
 
 const EMPTY_HEART = '♡';
-const FULL_HEART = '♥';
+const FULL_HEART = '❤️';
 const pokemonCount = 151;
 var pokedex = {};
 var likedPokemon = [];
