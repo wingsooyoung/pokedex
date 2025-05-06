@@ -1,232 +1,281 @@
 @font-face {
-    font-family: 'PokemonHollow';
-    src: url('./assets/fonts/pokemon_hollow.ttf') format('truetype');
-  }
-  
-  @font-face {
-    font-family: 'Roboto';
-    src: url('./assets/fonts/roboto.ttf') format('truetype');
-  }
-  
-  * {
+  font-family: 'PokemonHollow';
+  src: url('./assets/fonts/pokemon_hollow.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('./assets/fonts/roboto.ttf') format('truetype');
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: black;
+  color: white;
+  font-family: 'Roboto', Arial, sans-serif;
+  padding: 1rem;
+  margin: 2rem;
+}
+
+h1 {
+  text-align: center;
+  font-size: 3rem;
+  font-family: 'PokemonHollow', 'Roboto', Arial, sans-serif;
+  margin-bottom: 1rem;
+}
+
+/* FORM */
+#search-box {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#search-box input,
+#search-box select {
+  padding: 10px;
+  margin-top: 8px;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  border: none;
+  font-size: 1rem;
+  width: 100%;
+  max-width: 766px;
+}
+
+#error-message {
+  height: 32px;
+  margin-bottom: 10px;
+  color: red;
+}
+
+/* CONTAINER LAYOUT */
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #d32f2f;
+  gap: 10px;
+  justify-content: space-between;
+  overflow: hidden;
+  border: 2px solid white;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
+}
+
+.col {
+  flex: 1 1 30%;
+  padding: 10px;
+  height: 420px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border: 1px solid white;
+  border-radius: 5px;
+}
+
+#favorites-box,
+#poke-content {
+  border-radius: 0.25rem;
+  overflow: hidden;
+  background-color: yellow;
+  color: black;
+}
+
+/* MAIN POKE CONTENT BOX */
+#poke-content {
+  background-color: #d32f2f;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  overflow: auto;
+}
+
+#poke-list,
+#poke-info {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+#poke-info {
+  width: 100%;
+  text-align: center;
+}
+
+#poke-img {
+  width: 100%;
+  max-width: 180px;
+  height: auto;
+  background-color: silver;
+  border: 0.125rem solid white;
+}
+
+#poke-description {
+  background-color: silver;
+  border: 0.125rem solid white;
+  color: black;
+  font-size: 1.5vw;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 10px;
+  max-height: 50%;
+}
+
+#poke-list {
+  width: 100%;
+  flex: 1;
+  margin-right: 10px;
+}
+
+.poke-name {
+  background-color: silver;
+  color: black;
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-size: 1.5vw;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border: 1px solid white;
+  position: relative;
+}
+
+.poke-name:hover {
+  background-color: grey;
+}
+
+/* FAVORITES BOX */
+#favourites-col {
+  background-color: yellow;
+}
+
+#favorites-box h2 {
+  font-size: 1.5rem;
+}
+
+#favorites-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  overflow-y: auto;
+  flex: 1;
+}
+
+/* HEART */
+.heart {
+  cursor: pointer;
+  color: red;
+  margin-left: 5px;
+  font-size: 1.5vw;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* TYPE TAGS */
+#poke-types {
+  margin-bottom: 0.25rem;
+}
+
+.type {
+  display: inline-block;
+  padding: 6px 2px;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  border: 1px solid white;
+}
+
+.normal { background-color: beige; color: black; }
+.fire { background-color: orange; color: white; }
+.grass { background-color: green; color: white; }
+.water { background-color: blue; color: white; }
+.ice { background-color: lightblue; color: black; }
+.electric { background-color: gold; color: black; }
+.fighting { background-color: darkred; color: white; }
+.flying { background-color: skyblue; color: black; }
+.bug { background-color: yellowgreen; color: white; }
+.ghost { background-color: purple; color: white; }
+.rock { background-color: sienna; color: white; }
+.ground { background-color: burlywood; color: black; }
+.steel { background-color: silver; color: black; }
+.dark { background-color: darkgray; color: white; }
+.psychic { background-color: palevioletred; color: white; }
+.fairy { background-color: pink; color: black; }
+.dragon { background-color: teal; color: white; }
+.poison { background-color: darkviolet; color: white; }
+
+#favorites-list::-webkit-scrollbar,
+#poke-info::-webkit-scrollbar,
+#poke-list::-webkit-scrollbar,
+#poke-description::-webkit-scrollbar {
+  width: 8px;
+}
+
+#favorites-list::-webkit-scrollbar-thumb,
+#poke-info::-webkit-scrollbar-thumb,
+#poke-list::-webkit-scrollbar-thumb,
+#poke-description::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 5px;
+}
+
+#favorites-list::-webkit-scrollbar-track,
+#poke-list::-webkit-scrollbar-track,
+#poke-description::-webkit-scrollbar-track {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+  .col {
+    flex: 1 1 100%;
+    border: 1px solid white;
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+    height: 200px;
+    padding: 5px;
   }
-  
-  body {
-    background-color: black;
-    color: white;
-    font-family: 'Roboto', Arial, sans-serif;
-    padding: 1rem;
-  }
-  
-  h1 {
-    text-align: center;
-    font-size: 3rem;
-    font-family: 'PokemonHollow', 'Roboto', Arial, sans-serif;
-    margin-bottom: 20px;
-  }
-  
-  /* FORM */
-  #search-box {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  #search-box input,
-  #search-box select {
-    padding: 10px;
-    margin-top: 8px;
-    margin-bottom: 16px;
-    border-radius: 8px;
-    border: none;
-    font-size: 1rem;
-    width: 100%;
-    max-width: 766px;
-  }
-  
-  #error-message {
-    height: 32px;
-    margin-bottom: 10px;
-    color: red;
-  }
-  
-  /* CONTAINER LAYOUT */
-  .container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: space-between;
-  }
-  
-  #favorites-box,
+
   #poke-content {
-    flex: 1 1 45%;
-    height: 420px;
-    display: flex;
     flex-direction: column;
-    border-radius: 0.25rem;
-    border: 2px solid grey;
-    overflow: hidden;
-  }
-  
-  /* FAVORITES BOX */
-  #favorites-box {
-    background-color: yellow;
-    color: black;
-    padding: 8px;
-  }
-  
-  #favorites-box h2 {
-    margin-bottom: 10px;
-    font-size: 1.5rem;
-  }
-  
-  #favorites-list {
-    flex: 1;
-    overflow-y: auto;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  /* MAIN POKE CONTENT BOX */
-  #poke-content {
-    background-color: #d32f2f;
-    color: white;
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
-  
-  /* Poke list (left panel) */
-  #poke-list {
-    flex: 1;
-    overflow-y: auto;
-    padding: 10px;
-    width: calc(50% - 5px);
-    margin-right: 10px;
-  }
-  #poke-list,
-  #poke-info {
-    flex: 1 1 50%;
-    padding: 10px;
-  }
-
-  /* Poke info (right panel) */
-  #poke-info {
-    flex: 1 1 50%;
-    width: calc(50% - 5px);
-    padding: 10px;
-    text-align: center;
-  }
-  
-  #poke-img {
-    width: 100%;
-    max-width: 180px;
-    height: auto;
-    background-color: silver;
-    border: 0.125rem solid white;
-  }
-  
-  #poke-description {
-    background-color: silver;
-    border: 0.125rem solid white;
-
-    color: black;
-    font-size: 1.5vw;
-    overflow-y: auto;
-    overflow-x: hidden;
-    padding: 10px;
-    max-height: 220px;
-  }
-  
-  
-  /* TYPE TAGS */
-  #poke-types {
-    margin-bottom: 0.25rem;
-  }
-  
-  .type {
-    display: inline-block;
-    padding: 6px 2px;
-    border-radius: 10px;
-    font-size: 0.8rem;
     border: 1px solid white;
   }
-  
-  .poke-name {
-    background-color: silver;
-    color: black;
-    padding: 10px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    font-size: 1.5vw;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    border: 1px solid white; 
-    position: relative;
+
+  #poke-list,
+  #poke-info {
+    width: 100%;
+    flex: 1 1 auto;
   }
 
-  .poke-name:hover {
-    background-color: grey;
+  #poke-list {
+    max-height: 300px;
+    overflow-y: auto;
   }
 
-  /* HEART */
-  .heart {
-    cursor: pointer;
-    color: red;
-    margin-left: 5px;
-    font-size: 1.5rem;
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
+  #poke-list::-webkit-scrollbar {
+    width: 8px;
   }
-  
-  /* Pokemon types */
-  .normal { background-color: beige; color: black; }
-  .fire { background-color: orange; color: white; }
-  .grass { background-color: green; color: white; }
-  .water { background-color: blue; color: white; }
-  .ice { background-color: lightblue; color: black; }
-  .electric { background-color: gold; color: black; }
-  .fighting { background-color: darkred; color: white; }
-  .flying { background-color: skyblue; color: black; }
-  .bug { background-color: yellowgreen; color: white; }
-  .ghost { background-color: purple; color: white; }
-  .rock { background-color: sienna; color: white; }
-  .ground { background-color: burlywood; color: black; }
-  .steel { background-color: silver; color: black; }
-  .dark { background-color: darkgray; color: white; }
-  .psychic { background-color: palevioletred; color: white; }
-  .fairy { background-color: pink; color: black; }
-  .dragon { background-color: teal; color: white; }
-  .poison { background-color: darkviolet; color: white; }
-  
-  /* Scrollbar styling */
-  #favorites-list::-webkit-scrollbar,
-  #poke-info::-webkit-scrollbar,
-  #poke-list::-webkit-scrollbar,
-  #poke-description::-webkit-scrollbar {
-    width: 6px;
+
+  #poke-list::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
   }
-  
-  #favorites-list::-webkit-scrollbar-thumb,
-  #poke-info::-webkit-scrollbar-thumb,
-  #poke-list::-webkit-scrollbar-thumb,
-  #poke-description::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.4);
-    border-radius: 3px;
-  }
-  
-  #favorites-list::-webkit-scrollbar-track,
-  #poke-list::-webkit-scrollbar-track,
-  #poke-description::-webkit-scrollbar-track {
+
+  #poke-list::-webkit-scrollbar-track {
     background-color: white;
-    border-radius: 3px;
+    border-radius: 10px;
   }
-  
-  
+}
