@@ -109,14 +109,10 @@
     margin-right: 10px;
   }
   #poke-list,
-#poke-info {
-  flex: 1 1 50%;
-  padding: 10px;
-}
-
-#poke-list {
-  margin-right: 10px;
-}
+  #poke-info {
+    flex: 1 1 50%;
+    padding: 10px;
+  }
 
   /* Poke info (right panel) */
   #poke-info {
@@ -135,10 +131,11 @@
   }
   
   #poke-description {
-    background-color: white;
+    background-color: silver;
+    border: 0.125rem solid white;
+
     color: black;
-    font-size: 1rem;
-    border-radius: 12px;
+    font-size: 1.5vw;
     overflow-y: auto;
     overflow-x: hidden;
     padding: 10px;
@@ -160,17 +157,16 @@
   }
   
   .poke-name {
-    background-color: white;
-    border-color: black;
+    background-color: silver;
     color: black;
     padding: 10px;
     cursor: pointer;
     transition: background-color 0.2s;
-    font-size: 2vw;
+    font-size: 1.5vw;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    border: 1px solid black; 
+    border: 1px solid white; 
     position: relative;
   }
 
