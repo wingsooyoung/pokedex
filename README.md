@@ -1,12 +1,62 @@
-# Pokedex Project
+## Pokédex Web App
 
-## Desctiption
-This is a basic Pokedex project witch fetches data from the public API https://pokeapi.co/ and displays the OG 151 Pokemon, with a few features implemented such as filtering, searching, 
-and liking/ unliking Pokemon, which adds them to a favourites container.
-<br><br>
-I used this video to help me with the intial setup of the project: https://www.youtube.com/watch?v=dVtnFH4m_fE
-<br>
-In addition to this video, I then added extra features which I had learned at Academy XI, to enable me to filter, search, and toggle like.
-<br><br>
-In the future, I would love to develop this project further. There are a few things I am struggling to make work, for example
-combining the filter and search functions so that if the Pokemon are filtered by type, when I try to search for a pokemon via name or number, it only searches through the available filtered pokemon.
+A simple web application that displays the original 151 Pokémon using data from the PokeAPI. Built as part of the Software Engineering Transform course at Academy Xi.
+
+🌐 [Live Demo](https://pokedex-mu-bay.vercel.app/)
+
+Have a go on Vercel 
+
+🧬 [https://github.com/saradomincroft/pokedex.git]
+
+## 🚀 Features
+
+🔍 Search by Name or Number
+
+Quickly find Pokémon by entering their name or Pokédex number.
+
+Displays error message if the search doesn't match any Pokémon.
+
+## 🦪 Filter by Type
+
+Dropdown menu allows filtering by type (e.g., Fire, Water, Grass).
+
+Filtering and searching can be used together.
+
+## ❤️ Favourites System
+
+Toggle heart icon to add/remove Pokémon from favourites.
+
+Favourites appear in a separate list.
+
+LocalStorage preserves favourites between sessions.
+
+Clicking a favourite highlights it in the Pokédex.
+
+## ⚙️ Tech Stack
+
+HTML5
+
+CSS3
+
+JavaScript (Vanilla)
+
+PokeAPI
+
+## 🎨 Styling
+
+Hover effects for interaction feedback.
+
+Type badges styled with colours.
+
+Selected Pokémon visually highlighted for better UX.
+
+## 🎥 Credits
+
+Initial setup inspired by [Kenny Yip Coding's YouTube tutorial](https://www.youtube.com/watch?v=dVtnFH4m_fE)
+
+
+## 📝 License
+
+This project is open source and available under the MIT License.
+
+Thanks for checking it out! Feel free to fork, star, or send through feedback!
