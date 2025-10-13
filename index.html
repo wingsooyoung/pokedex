@@ -16,42 +16,6 @@
   <div id="app-content" style="display: none;">
   <h1 id="header-title">MY POKÉDEX</h1>
 
-  <!-- Search Form -->
-  <form id="search-box">
-    <label for="search-input">Search by Name or Number:</label><br>
-    <input
-      type="text"
-      id="search-input"
-      placeholder="Search by name or number"
-      oninput="searchPokemon()"
-    /><br>
-
-    <label for="type-filter">Filter by Type:</label><br>
-    <select id="type-filter" onchange="filterByType()">
-      <option value="all">All Types</option>
-      <option value="normal">Normal</option>
-      <option value="fire">Fire</option>
-      <option value="grass">Grass</option>
-      <option value="water">Water</option>
-      <option value="ice">Ice</option>
-      <option value="fighting">Fighting</option>
-      <option value="flying">Flying</option>
-      <option value="bug">Bug</option>
-      <option value="ghost">Ghost</option>
-      <option value="rock">Rock</option>
-      <option value="ground">Ground</option>
-      <option value="steel">Steel</option>
-      <option value="electric">Electric</option>
-      <option value="psychic">Psychic</option>
-      <option value="dragon">Dragon</option>
-      <option value="poison">Poison</option>
-    </select>
-    
-    <div id="error-container">
-      <div id="error-message"></div>
-    </div>
-  </form>
-
   <!-- Main Container -->
   <section class="container">
     <div class="row">
@@ -82,6 +46,42 @@
       </div>
     </div>
   </section>
+
+  <!-- Search Form -->
+  <form id="search-box">
+      <label for="search-input">Search by Name or Number:</label><br>
+      <input
+              type="text"
+              id="search-input"
+              placeholder="Search by name or number"
+              oninput="searchPokemon()"
+      /><br>
+
+      <label for="type-filter">Filter by Type:</label><br>
+      <select id="type-filter" onchange="filterByType()">
+        <option value="all">All Types</option>
+        <option value="normal">Normal</option>
+        <option value="fire">Fire</option>
+        <option value="grass">Grass</option>
+        <option value="water">Water</option>
+        <option value="ice">Ice</option>
+        <option value="fighting">Fighting</option>
+        <option value="flying">Flying</option>
+        <option value="bug">Bug</option>
+        <option value="ghost">Ghost</option>
+        <option value="rock">Rock</option>
+        <option value="ground">Ground</option>
+        <option value="steel">Steel</option>
+        <option value="electric">Electric</option>
+        <option value="psychic">Psychic</option>
+        <option value="dragon">Dragon</option>
+        <option value="poison">Poison</option>
+      </select>
+
+      <div id="error-container">
+        <div id="error-message"></div>
+      </div>
+    </form>
 </div>
 </body>
 </html>
