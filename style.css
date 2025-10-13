@@ -147,19 +147,34 @@ h2 {
   text-align: center;
 }
 
-#poke-img {
+#poke-normal-img {
   width: 100%;
   max-width: 180px;
   height: auto;
   background-color: silver;
   border: 0.125rem solid white;
 }
+#poke-normal-img:hover {
+  visibility: hidden;
+}
+
+#poke-shiny-img {
+  visibility: hidden;
+  width: 100%;
+  max-width: 180px;
+  height: auto;
+  background-color: silver;
+  border: 0.125rem solid white;
+}
+#poke-shiny-img:hover {
+  visibility: visible;
+}
 
 #poke-description {
   background-color: silver;
   border: 0.125rem solid white;
   color: black;
-  font-size: 1.5vw;
+  font-size: 1rem;
   overflow-y: auto;
   overflow-x: hidden;
   padding: 10px;

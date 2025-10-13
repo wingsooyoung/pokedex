@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", initialize);
 
 const EMPTY_HEART = '♡';
 const FULL_HEART = '❤️';
-const pokemonCount = 1025; 
+const pokemonCount = 1025;
 var pokedex = {};
 var likedPokemon = [];
 
@@ -25,7 +25,9 @@ async function initialize() {
     if (pokedex[1]) {
         document.getElementById("poke-name").innerText = pokedex[1]["name"].charAt(0).toUpperCase() + pokedex[1]["name"].slice(1);
         document.getElementById("poke-description").innerText = pokedex[1]["desc"];
-        document.getElementById("poke-img").src = pokedex[1]["img"];
+        //document.getElementById("poke-img").src = pokedex[1]["img"];
+        document.getElementById("poke-normal-img").src = pokedex[1]["normal"];
+        document.getElementById("poke-shiny-img").src = pokedex[1]["shiny"];
     }
 
     updateFavorites();
@@ -49,7 +51,9 @@ async function getPokemon(num) {
 
     let pokemonName = pokemon["name"];
     let pokemonType = pokemon["types"];
-    let pokemonImg = pokemon["sprites"]["front_default"];
+    //let pokemonImg = pokemon["sprites"]["front_default"];
+    let pokeNormalImg = `https://img.pokemondb.net/sprites/home/normal/2x/${pokemon["name"]}.jpg`
+    let pokeShinyImg = `https://img.pokemondb.net/sprites/home/shiny/2x/${pokemon["name"]}.jpg`
 
     res = await fetch(pokemon["species"]["url"]);
     let pokemonDescData = await res.json();
@@ -58,7 +62,9 @@ async function getPokemon(num) {
 
     pokedex[num] = {
         "name": pokemonName,
-        "img": pokemonImg,
+        //"img": pokemonImg,
+        "normal": pokeNormalImg,
+        "shiny": pokeShinyImg,
         "types": pokemonType,
         "desc": pokemonDesc,
         "liked": likedPokemon.includes(num.toString())
