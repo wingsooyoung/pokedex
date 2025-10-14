@@ -154,21 +154,21 @@ h2 {
   background-color: silver;
   border: 0.125rem solid white;
 }
-#poke-normal-img:hover {
+/* #poke-normal-img:hover {
   visibility: hidden;
-}
+} */
 
 #poke-shiny-img {
-  visibility: hidden;
+  /* visibility: hidden; */
   width: 100%;
   max-width: 180px;
   height: auto;
   background-color: silver;
   border: 0.125rem solid white;
 }
-#poke-shiny-img:hover {
+/* #poke-shiny-img:hover {
   visibility: visible;
-}
+} */
 
 #poke-description {
   background-color: silver;
