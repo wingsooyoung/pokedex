@@ -110,7 +110,8 @@ function updatePokemon() {
 
     document.getElementById("poke-name").innerText =
         pokedex[pokemonId]["name"].charAt(0).toUpperCase() + pokedex[pokemonId]["name"].slice(1);
-    document.getElementById("poke-img").src = pokedex[pokemonId]["img"];
+    document.getElementById("poke-normal-img").src = pokedex[pokemonId]["normal"];
+    document.getElementById("poke-shiny-img").src = pokedex[pokemonId]["shiny"];
     document.getElementById("poke-description").innerText = pokedex[pokemonId]["desc"];
 
     let typesDiv = document.getElementById("poke-types");
