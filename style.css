@@ -42,12 +42,13 @@ h1 {
   font-size: 3rem;
   font-family: 'PokemonHollow', 'Roboto', Arial, sans-serif;
   margin-bottom: 1rem;
+  margin-top: -3.5rem;
 }
 
 h2 {
   text-align: center;
   font-family: 'PokemonHollow', 'Roboto', Arial, sans-serif;
-
+  margin-top: -1rem;
 }
 
 /* FORM */
@@ -244,24 +245,82 @@ h2 {
   border: 1px solid white;
 }
 
-.normal { background-color: beige; color: black; }
-.fire { background-color: orange; color: white; }
-.grass { background-color: green; color: white; }
-.water { background-color: blue; color: white; }
-.ice { background-color: lightblue; color: black; }
-.electric { background-color: gold; color: black; }
-.fighting { background-color: darkred; color: white; }
-.flying { background-color: skyblue; color: black; }
-.bug { background-color: yellowgreen; color: white; }
-.ghost { background-color: purple; color: white; }
-.rock { background-color: sienna; color: white; }
-.ground { background-color: burlywood; color: black; }
-.steel { background-color: silver; color: black; }
-.dark { background-color: darkgray; color: white; }
-.psychic { background-color: palevioletred; color: white; }
-.fairy { background-color: pink; color: black; }
-.dragon { background-color: teal; color: white; }
-.poison { background-color: darkviolet; color: white; }
+:root {
+  --normal-1: #9fa19f;
+  --normal-2: #595856;
+  --normal-3: #7b797a;
+  --fighting-1: #ff8000;
+  --fighting-2: #f36929;
+  --fighting-3: #fea73f;
+  --flying-1: #88caf7;
+  --flying-2: #4eace9;
+  --flying-3: #eefafe;
+  --poison-1: #9141cb;
+  --poison-2: #36285a;
+  --poison-3: #51ea7a;
+  --ground-1: #915121;
+  --ground-2: #84613b;
+  --ground-3: #8e7b58;
+  --rock-1: #afa981;
+  --rock-2: #929273;
+  --rock-3: #dcdcc3;
+  --bug-1: #91a119;
+  --bug-2: #f5d83b;
+  --bug-3: #6c6343;
+  --ghost-1: #704170;
+  --ghost-2: #a794f8;
+  --ghost-3: #5c2575;
+  --steel-1: #60a1b8;
+  --steel-2: #4f809c;
+  --steel-3: #797b97;
+  --fire-1: #e62829;
+  --fire-2: #f3a124;
+  --fire-3: #fef303;
+  --water-1: #2980ef;
+  --water-2: #0a5bff;
+  --water-3: #04d9fe;
+  --grass-1: #3fa129;
+  --grass-2: #05a402;
+  --grass-3: #55f979;
+  --electric-1: #fac000;
+  --electric-2: #fff60c;
+  --electric-3: #c1a810;
+  --psychic-1: #ef4179;
+  --psychic-2: #d551aa;
+  --psychic-3: #7e2b6e;
+  --ice-1: #4be0fb;
+  --ice-2: #d3d4d9;
+  --ice-3: #ddf0ee;
+  --dragon-1: #5060e1;
+  --dragon-2: #fe026c;
+  --dragon-3: #5255a4;
+  --dark-1: #403233;
+  --dark-2: #c3206e;
+  --dark-3: #581d1d;
+  --fairy-1: #ef70ef;
+  --fairy-2: #f2c5f9;
+  --fairy-3: #88d4ca;
+}
+
+.bug { background-color: var(--bug-1); color: white; }
+.dark { background-color: var(--dark-1); color: white; }
+.dragon { background-color: var(--dragon-1); color: white; }
+.electric { background-color: var(--electric-1); color: white; }
+.fairy { background-color: var(--fairy-1); color: white; }
+.fighting { background-color: var(--fighting-3); color: white; }
+.fire { background-color: var(--fire-1); color: white; }
+.flying { background-color: var(--flying-1); color: white; }
+.ghost { background-color: var(--ghost-3); color: white; }
+.grass { background-color: var(--grass-1); color: white; }
+.ground { background-color: var(--ground-1); color: white; }
+.ice { background-color: var(--ice-1); color: white; }
+.normal { background-color: var(--normal-3); color: white; }
+.poison { background-color: var(--poison-1); color: white; }
+.psychic { background-color: var(--psychic-1); color: white; }
+.rock { background-color: var(--rock-1); color: white; }
+.steel { background-color: var(--steel-1); color: white; }
+.water { background-color: var(--water-2); color: white; }
+/*.?  { background-color: #68a090; color: white; }*/
 
 
 
