@@ -235,14 +235,17 @@ h2 {
 /* TYPE TAGS */
 #poke-types {
   margin-bottom: 0.25rem;
+  background-color: rgba(167, 167, 167, 0.43);
+  border-radius: 50px;
 }
 
 .type {
   display: inline-block;
-  padding: 6px 2px;
+  padding: 6px 8px;
   border-radius: 10px;
-  font-size: 0.8rem;
-  border: 1px solid white;
+  font-size: 0.9rem;
+  border-width: 2px;
+  border-style: outset;
 }
 
 :root {
@@ -302,24 +305,24 @@ h2 {
   --fairy-3: #88d4ca;
 }
 
-.bug { background-color: var(--bug-1); color: white; }
-.dark { background-color: var(--dark-1); color: white; }
-.dragon { background-color: var(--dragon-1); color: white; }
-.electric { background-color: var(--electric-1); color: white; }
-.fairy { background-color: var(--fairy-1); color: white; }
-.fighting { background-color: var(--fighting-3); color: white; }
-.fire { background-color: var(--fire-1); color: white; }
-.flying { background-color: var(--flying-1); color: white; }
-.ghost { background-color: var(--ghost-3); color: white; }
-.grass { background-color: var(--grass-1); color: white; }
-.ground { background-color: var(--ground-1); color: white; }
-.ice { background-color: var(--ice-1); color: white; }
-.normal { background-color: var(--normal-3); color: white; }
-.poison { background-color: var(--poison-1); color: white; }
-.psychic { background-color: var(--psychic-1); color: white; }
-.rock { background-color: var(--rock-1); color: white; }
-.steel { background-color: var(--steel-1); color: white; }
-.water { background-color: var(--water-2); color: white; }
+.bug { background-color: var(--bug-1); color: white; border-color: rgb(from var(--bug-1) r 100 b); }
+.dark { background-color: var(--dark-1); color: white; border-color: rgb(from var(--dark-1) 200 200 200); }
+.dragon { background-color: var(--dragon-1); color: white; border-color: rgb(from var(--dragon-1) r g 200); }
+.electric { background-color: var(--electric-1); color: white; border-color: rgb(from var(--electric-1) r 200 b); }
+.fairy { background-color: var(--fairy-1); color: white; border-color: rgb(from var(--fairy-1) r 200 b); }
+.fighting { background-color: var(--fighting-3); color: white; border-color: rgb(from var(--fighting-3) r 200 b); }
+.fire { background-color: var(--fire-1); color: white; border-color: rgb(from var(--fire-1) 200 g b); }
+.flying { background-color: var(--flying-1); color: white; border-color: rgb(from var(--flying-1) r g 100); }
+.ghost { background-color: var(--ghost-3); color: white; border-color: rgb(from var(--ghost-3) r 200 b); }
+.grass { background-color: var(--grass-1); color: white; border-color: rgb(from var(--grass-1) r 200 b); }
+.ground { background-color: var(--ground-1); color: white; border-color: rgb(from var(--ground-1) r 200 b); }
+.ice { background-color: var(--ice-1); color: white; border-color: rgb(from var(--ice-1) r g 100); }
+.normal { background-color: var(--normal-3); color: white; border-color: rgb(from var(--normal-3) r 200 b); }
+.poison { background-color: var(--poison-1); color: white; border-color: rgb(from var(--poison-1) r 200 b); }
+.psychic { background-color: var(--psychic-1); color: white; border-color: rgb(from var(--psychic-1) r 200 b); }
+.rock { background-color: var(--rock-1); color: white; border-color: rgb(from var(--rock-1) r 200 b); }
+.steel { background-color: var(--steel-1); color: white; border-color: rgb(from var(--steel-1) r g 100); }
+.water { background-color: var(--water-2); color: white; border-color: rgb(from var(--water-2) r g 200); }
 /*.?  { background-color: #68a090; color: white; }*/
 
 
