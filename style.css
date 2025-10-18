@@ -10,10 +10,21 @@
   font-family: 'Roboto';
   src: url('./assets/fonts/roboto-regular.ttf') format('truetype');
 }
-
 @font-face {
   font-family: 'Arcade';
   src: url('./assets/fonts/arcade.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'ComicSansMS';
+  src: url('./assets/fonts/Comic Sans MS.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'IrishGrover';
+  src: url('./assets/fonts/IrishGrover-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Jersey15';
+  src: url('./assets/fonts/Jersey15-Regular.ttf') format('truetype');
 }
 
 * {
@@ -25,7 +36,7 @@
 body {
   background-color: black;
   color: white;
-  font-family: 'Roboto', Arial, sans-serif;
+  font-family: 'Jersey15', Arial, sans-serif;
   padding: 1rem;
   margin: 2rem;
 }
@@ -47,14 +58,19 @@ h1 {
 
 h2 {
   text-align: center;
-  font-family: 'PokemonHollow', 'Roboto', Arial, sans-serif;
+  font-family: 'Jersey15', Arial, sans-serif;
   margin-top: -1rem;
 }
 
 /* FORM */
 #search-box {
   text-align: center;
-  margin-bottom: 20px;
+  background-color: #69696999;
+  border: #696969 outset;
+  padding-top: 6px;
+  width: 85%;
+  margin: 10px auto 20px;
+  border-radius: 30px;
 }
 
 #search-box input,
@@ -175,6 +191,7 @@ h2 {
   background-color: silver;
   border: 0.125rem solid white;
   color: black;
+  font-family: "Comic Sans MS", Arial, sans-serif;
   font-size: 1rem;
   overflow-y: auto;
   overflow-x: hidden;
@@ -237,6 +254,10 @@ h2 {
   margin-bottom: 0.25rem;
   background-color: rgba(167, 167, 167, 0.43);
   border-radius: 50px;
+  width: max-content;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px 32px;
 }
 
 .type {
@@ -246,6 +267,14 @@ h2 {
   font-size: 0.9rem;
   border-width: 2px;
   border-style: outset;
+}
+
+.spacing1 {
+  padding: 5px;
+}
+
+.spacing2 {
+  display: none;
 }
 
 :root {
@@ -305,26 +334,24 @@ h2 {
   --fairy-3: #88d4ca;
 }
 
-.bug { background-color: var(--bug-1); color: white; border-color: rgb(from var(--bug-1) r 100 b); }
-.dark { background-color: var(--dark-1); color: white; border-color: rgb(from var(--dark-1) 200 200 200); }
-.dragon { background-color: var(--dragon-1); color: white; border-color: rgb(from var(--dragon-1) r g 200); }
-.electric { background-color: var(--electric-1); color: white; border-color: rgb(from var(--electric-1) r 200 b); }
-.fairy { background-color: var(--fairy-1); color: white; border-color: rgb(from var(--fairy-1) r 200 b); }
-.fighting { background-color: var(--fighting-3); color: white; border-color: rgb(from var(--fighting-3) r 200 b); }
-.fire { background-color: var(--fire-1); color: white; border-color: rgb(from var(--fire-1) 200 g b); }
-.flying { background-color: var(--flying-1); color: white; border-color: rgb(from var(--flying-1) r g 100); }
-.ghost { background-color: var(--ghost-3); color: white; border-color: rgb(from var(--ghost-3) r 200 b); }
-.grass { background-color: var(--grass-1); color: white; border-color: rgb(from var(--grass-1) r 200 b); }
-.ground { background-color: var(--ground-1); color: white; border-color: rgb(from var(--ground-1) r 200 b); }
-.ice { background-color: var(--ice-1); color: white; border-color: rgb(from var(--ice-1) r g 100); }
-.normal { background-color: var(--normal-3); color: white; border-color: rgb(from var(--normal-3) r 200 b); }
-.poison { background-color: var(--poison-1); color: white; border-color: rgb(from var(--poison-1) r 200 b); }
-.psychic { background-color: var(--psychic-1); color: white; border-color: rgb(from var(--psychic-1) r 200 b); }
-.rock { background-color: var(--rock-1); color: white; border-color: rgb(from var(--rock-1) r 200 b); }
-.steel { background-color: var(--steel-1); color: white; border-color: rgb(from var(--steel-1) r g 100); }
-.water { background-color: var(--water-2); color: white; border-color: rgb(from var(--water-2) r g 200); }
-/*.?  { background-color: #68a090; color: white; }*/
-
+.bug { background-color: var(--bug-1); color: white; border-color: rgb(from var(--bug-1) r 180 b); }
+.dark { background-color: var(--dark-1); color: white; border-color: rgb(from var(--dark-1) 35 30 25); }
+.dragon { background-color: var(--dragon-1); color: white; border-color: rgb(from var(--dragon-1) 10 20 180 / 0.5); }
+.electric { background-color: var(--electric-1); color: white; border-color: rgb(from var(--electric-1) 230 180 b); }
+.fairy { background-color: var(--fairy-1); color: white; border-color: rgb(from var(--fairy-1) 200 100 200); }
+.fighting { background-color: var(--fighting-3); color: white; border-color: rgb(from var(--fighting-3) 220 150 b); }
+.fire { background-color: var(--fire-1); color: white; border-color: rgb(from var(--fire-1) 180 g b); }
+.flying { background-color: var(--flying-1); color: white; border-color: rgb(from var(--flying-1) 75 160 230); }
+.ghost { background-color: var(--ghost-3); color: white; border-color: rgb(from var(--ghost-3) 150 80 180); }
+.grass { background-color: var(--grass-1); color: white; border-color: rgb(from var(--grass-1) r 190 b); }
+.ground { background-color: var(--ground-1); color: white; border-color: rgb(from var(--ground-1) 120 60 b); }
+.ice { background-color: var(--ice-1); color: white; border-color: rgb(from var(--ice-1) 25 175 200); }
+.normal { background-color: var(--normal-3); color: white; border-color: rgb(from var(--normal-3) 100 100 100); }
+.poison { background-color: var(--poison-1); color: white; border-color: rgb(from var(--poison-1) 125 30 200); }
+.psychic { background-color: var(--psychic-1); color: white; border-color: rgb(from var(--psychic-1) 200 50 b); }
+.rock { background-color: var(--rock-1); color: white; border-color: rgb(from var(--rock-1) 150 145 100); }
+.steel { background-color: var(--steel-1); color: white; border-color: rgb(from var(--steel-1) 66 130 150); }
+.water { background-color: var(--water-2); color: white; border-color: rgb(from var(--water-2) r 75 235); }
 
 
 @media (max-width: 768px) {

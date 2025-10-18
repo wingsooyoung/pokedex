@@ -118,13 +118,22 @@ function updatePokemon() {
     typesDiv.innerHTML = "";
 
     let types = pokedex[pokemonId]["types"];
-    types.forEach(typeObj => {
-        let type = document.createElement("span");
-        let typeName = typeObj["type"]["name"];
-        type.innerText = typeName.toUpperCase();
-        type.classList.add("type", typeName);
-        typesDiv.appendChild(type);
-    });
+    if (types.length === 2) {
+        types.forEach(typeObj => {
+            let type = document.createElement("span");
+            let spacer = document.createElement("span");
+            let typeName = typeObj["type"]["name"];
+            let slotNum = typeObj["slot"];
+
+            type.innerText = typeName.toUpperCase();
+            type.classList.add("type", typeName);
+            spacer.classList.add("spacing"+slotNum)
+            typesDiv.appendChild(type);
+            typesDiv.appendChild(spacer)
+        });
+    }
+
+
 }
 
 
