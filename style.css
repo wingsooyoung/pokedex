@@ -401,4 +401,13 @@ h2 {
     font-size: 0.8rem;
   }
 
+  #poke-normal-img {
+    max-width: 50%;
+  }
+
+  #poke-shiny-img {
+    /* visibility: hidden; */
+    max-width: 50%;
+  }
+
 }
