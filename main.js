@@ -25,9 +25,37 @@ async function initialize() {
     if (pokedex[1]) {
         document.getElementById("poke-name").innerText = pokedex[1]["name"].charAt(0).toUpperCase() + pokedex[1]["name"].slice(1);
         document.getElementById("poke-description").innerText = pokedex[1]["desc"];
-        //document.getElementById("poke-img").src = pokedex[1]["img"];
         document.getElementById("poke-normal-img").src = pokedex[1]["normal"];
         document.getElementById("poke-shiny-img").src = pokedex[1]["shiny"];
+
+        let typesDiv = document.getElementById("poke-types");
+        typesDiv.innerHTML = "";
+
+        let types = pokedex[1]["types"];
+        if (types.length === 2) {
+            types.forEach(typeObj => {
+                let type = document.createElement("span");
+                let spacer = document.createElement("span");
+                let typeName = typeObj["type"]["name"];
+                let slotNum = typeObj["slot"];
+
+                type.innerText = typeName.toUpperCase();
+                type.classList.add("type", typeName);
+                spacer.classList.add("spacing"+slotNum)
+                typesDiv.appendChild(type);
+                typesDiv.appendChild(spacer)
+            });
+        } else {
+            types.forEach(typeObj => {
+                let type = document.createElement("span");
+                let typeName = typeObj["type"]["name"];
+
+                type.innerText = typeName.toUpperCase();
+                type.classList.add("type", typeName);
+                typesDiv.appendChild(type);
+            });
+        }
+
     }
 
     updateFavorites();
