@@ -131,6 +131,15 @@ function updatePokemon() {
             typesDiv.appendChild(type);
             typesDiv.appendChild(spacer)
         });
+    } else {
+        types.forEach(typeObj => {
+            let type = document.createElement("span");
+            let typeName = typeObj["type"]["name"];
+
+            type.innerText = typeName.toUpperCase();
+            type.classList.add("type", typeName);
+            typesDiv.appendChild(type);
+        });
     }
 
 
